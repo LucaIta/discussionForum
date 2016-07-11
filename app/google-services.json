@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "582918900387",
+    "firebase_url": "https://discussionforum-1f311.firebaseio.com",
+    "project_id": "discussionforum-1f311",
+    "storage_bucket": "discussionforum-1f311.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582918900387:android:63ca200269631349",
+        "android_client_info": {
+          "package_name": "com.epicodus.discussionforum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582918900387-sgklthlkqu9qtjkepnn5bvbs3at7fp8r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicodus.discussionforum",
+            "certificate_hash": "40872DEEA76101C558512AAC36831FD20068E4FF"
+          }
+        },
+        {
+          "client_id": "582918900387-85n2fplc2fu9qgr2urhlsekjmoq6ag37.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyI-u49YdwIzqLi0TMf87nAoOcVMitGqA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582918900387-85n2fplc2fu9qgr2urhlsekjmoq6ag37.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
