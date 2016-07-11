@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,7 +31,6 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         if (view == mNewCategoryButton) {
             String newCategory = mNewCategoryView.getText().toString();
-//            Toast.makeText(NewCategoryActivity.this, newCategory, Toast.LENGTH_LONG).show();
             mCategoryReference.push().setValue(newCategory);
         }
     }
