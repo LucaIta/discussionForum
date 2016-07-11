@@ -7,15 +7,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class NewCategoryActivity extends AppCompatActivity implements View.OnClickListener{
+    private DatabaseReference mCategoryReference;
+
     @Bind(R.id.newCategoryButton) Button mNewCategoryButton;
     @Bind(R.id.newCategoryView) EditText mNewCategoryView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mCategoryReference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_CHILD_CATEGORY);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_category);
         ButterKnife.bind(this);
@@ -26,7 +32,8 @@ public class NewCategoryActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         if (view == mNewCategoryButton) {
             String newCategory = mNewCategoryView.getText().toString();
-            Toast.makeText(NewCategoryActivity.this, newCategory, Toast.LENGTH_LONG).show();
+//            Toast.makeText(NewCategoryActivity.this, newCategory, Toast.LENGTH_LONG).show();
+            mCategoryReference.push().setValue(newCategory);
         }
     }
 
