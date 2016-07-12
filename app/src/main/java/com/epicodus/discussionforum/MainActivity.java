@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
                     mCategoryList.add(categorySnapshot.getValue().toString());
+                    ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, mCategoryList);
+                    mListView.setAdapter(adapter);
                 }
             }
 
@@ -50,8 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, mCategoryList);
-        mListView.setAdapter(adapter);
 
     }
 
