@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DatabaseReference mCategoryReference;
     private ValueEventListener mCategoryReferenceEventListener;
     private ArrayList<String> mCategoryList = new ArrayList<>();
+    private String key;
     @Bind(R.id.categoryListView) ListView mListView;
 
     @Override
@@ -37,6 +40,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mNewCategoryButton.setOnClickListener(this);
+
+        Map<String, Object> map23 = new HashMap<>();
+        map23.put("0", "sports");
+        map23.put("1", "technology");
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("test");
+
+        ref.updateChildren(map23);
+
+
+        DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("test").child("0");
+        ref2.push().setValue("business");
+
+
+
+
+
+
+
+
 
         mCategoryReference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_CHILD_CATEGORY);
 
@@ -63,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String category = ((TextView)view).getText().toString();
                 Intent intent = new Intent(MainActivity.this, CategoryDetailActivity.class);
                 intent.putExtra("category", category);
+                getKey(category);
+//                intent.putExtra("key", key);
                 startActivity(intent);
             }
         });
@@ -81,6 +106,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
     }
+
+    public String getKey(final String categoryName) {
+
+        mCategoryReference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_CHILD_CATEGORY);
+
+
+        mCategoryReferenceEventListener = mCategoryReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
+                    if (categoryName.equals(categorySnapshot.getValue().toString())) {
+                        key = categorySnapshot.getKey().toString();
+                        Log.v("Key:", "the key is this : " +  key);
+                    }
+                }
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
+        Log.v("returned key","the key in the method is :" + key);
+        return key;
+    }
+
+
 
 
 }
